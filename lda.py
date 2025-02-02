@@ -61,6 +61,8 @@ w = t - b
 # F(q-1,n-q)
 # luam valorile de pe diagonalele principale
 # Fcalc = Trace(B)*(q-1)^(-1)/Trace(W)/(n-q)^(-1)
+# Fcalc reprezinta puterea de discriminare
+# Coloanele sunt semnificative pentru LDA daca p-val < 0.05
 
 f = (np.diag(b)/(q-1))/(np.diag(w)/(n-q))
 p_value = 1-sts.f.cdf(f,q-1,n-q)
@@ -70,16 +72,6 @@ print(f_df)
 
 print("Coloane Semnificative")
 print(f_df[f_df["P-Value"]<0.05])
-
-nr_discriminatori = min(q-1,m)
-centri = df_lda.groupby(by=labels.values).mean()
-print(centri)
-
-# # Vizualizare distributie discriminatori
-# for i in range(nr_discriminatori):
-#     plot_distributie(df_lda,labels,lda.classes_, i)
-# plt.show()
-
 
 
 #2 Plot instante si centri LD1 LD2
