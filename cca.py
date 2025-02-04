@@ -127,7 +127,7 @@ for lb,z1,z2,u1,u2 in zip(df_z.index,df_z["Z1"],df_z["Z2"],df_u["U1"],df_u["U2"]
 plt.show()
 
 
-#8 Varianta  si Redundanta
+#8 Varianta  si Redundanta (cod furtuna)
 varianta_X = np.sum(corr_X.values[:,:m]*corr_X.values[:,:m],axis=0)
 varianta_Y = np.sum(corr_Y.values[:,:m]*corr_Y.values[:,:m],axis=0)
 redundanta_X = varianta_X * r2[:m]
