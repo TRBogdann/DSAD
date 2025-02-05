@@ -23,10 +23,11 @@ df = df.drop(columns=["glass","Id"])
 for col in df.columns:
     df.fillna({col:df[col].mean()})
 
-#0B LDA
+#0B Standardizare(daca se cere)
 values=set(labels.to_numpy())
-
 df_norm = (df-df.mean())/df.std()
+
+#0C LDA
 lda = LinearDiscriminantAnalysis(n_components=len(values)-1)
 transformed = lda.fit_transform(df_norm,labels)
 df_lda = pd.DataFrame(transformed,columns=['L'+str(i+1) for i in range(len(values)-1)])

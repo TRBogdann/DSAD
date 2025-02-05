@@ -15,7 +15,7 @@ df_Y =pd.read_csv("./dataIN/AC/Emissions.csv",index_col=1).drop(columns=["Countr
 df_X = df_X.replace(np.nan,0)
 df_Y = df_Y.replace(np.nan,0)
 
-#0B Normalizare
+#0B Standardizare
 
 df_X = (df_X - df_X.mean()) / df_X.std()
 df_Y = (df_Y - df_Y.mean()) / df_Y.std()
@@ -128,10 +128,10 @@ plt.show()
 
 
 #8 Varianta  si Redundanta (cod furtuna)
-varianta_X = np.sum(corr_X.values[:,:m]*corr_X.values[:,:m],axis=0)
-varianta_Y = np.sum(corr_Y.values[:,:m]*corr_Y.values[:,:m],axis=0)
-redundanta_X = varianta_X * r2[:m]
-redundanta_Y = varianta_Y * r2[:m]
+varianta_X = np.sum(corr_X.values[:,:m]**2,axis=0)
+varianta_Y = np.sum(corr_Y.values[:,:m]**2,axis=0)
+redundanta_X = varianta_X * r2
+redundanta_Y = varianta_Y * r2
 
 df_varianta_reduntanta = pd.DataFrame({
     "VariantaX" : varianta_X,
@@ -143,3 +143,4 @@ df_varianta_reduntanta = pd.DataFrame({
 df_varianta_reduntanta.index = ["R"+str(i+1) for i in range(m)]
 
 print(df_varianta_reduntanta)
+print(df_varianta_reduntanta.sum())

@@ -11,7 +11,7 @@ drop_list = ["Country"]
 df = pd.read_csv("./dataIN/AC/MortalityEU.csv")
 
 
-
+#0 Data Cleaning + Standardizare
 df_norm = (df.replace(":",None).dropna())
 labels = df_norm["Country"]
 labels.index = [i for i in range(labels.shape[0])]

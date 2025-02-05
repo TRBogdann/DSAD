@@ -12,13 +12,16 @@ df = df.dropna()
 labels = df["Country"]
 df = df.drop(columns=["Country","Code"]).astype(float)
 
-#0B Normalizare
+#0B Standardizare(daca se cere)
+
 mean = df.mean()
 std = df.std()
 df = (df - mean) / std
 
-
+#1. Calcul Matrice
 linkage_data = linkage(df.to_numpy(), method='ward', metric='euclidean')
+matrice = pd.DataFrame(linkage_data,columns=["Cluster1","Cluster2","Distanta","NumarInstante"])
+print(matrice)
 
 #2. Calcul partitiei optime
 # Calculam diferentele dintre distantele dintre clusteri
@@ -42,7 +45,9 @@ plt.plot([x for x in range(len(linkage_data))],linkage_data[:,2])
 plt.plot([0,len(linkage_data)-1],[linkage_data[:,2][ind],linkage_data[:,2][ind]])
 plt.show()
 
-#3 Partitie oarecare
+#3 Partitie oarecare sau partitie optima
+# In cazul de fata k e partitia optima,
+# dar putem alege si alt k, k<=df.shape[0]
 
 hclust = AgglomerativeClustering(n_clusters=k,metric="euclidean",linkage="ward")
 hclust.fit(df)

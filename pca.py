@@ -10,7 +10,7 @@ df = pd.read_csv("dataIN/AC/Y_DNA_Tari.csv")
 labels = df["Country"]
 df_pca = df.drop(columns=["Country","Code"]).dropna().astype(float)
 
-#0B Normalizare
+#0B Standardizare
 mean = df_pca.mean()
 std = df_pca.std()
 df_pca = (df_pca - mean) / std
