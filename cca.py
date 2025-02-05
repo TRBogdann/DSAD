@@ -57,7 +57,7 @@ p_val = 1 - chi2.cdf(chi2_calc,df)
 
 print(p_val)
 
-#4 Calcul Corelatii
+#4 Calcul Corelatii Factoriale
 
 corr_X = np.corrcoef(df_X,z,rowvar=False)[:p,p:]
 corr_Y = np.corrcoef(df_Y,u,rowvar=False)[:q,q:]
@@ -139,7 +139,7 @@ df_varianta_reduntanta = pd.DataFrame({
     "RedundantaX": redundanta_X,
     "RedundantaY": redundanta_Y
 })
-# Tine cont de radacini
+# Tine cont de radacini (R1,R2...,RM)
 df_varianta_reduntanta.index = ["R"+str(i+1) for i in range(m)]
 
 print(df_varianta_reduntanta)
